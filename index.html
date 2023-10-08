@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #message {
+            display: none;
+            color: red;
+            font-size: 14px;
+        }
+
+        #success-message {
+            display: none;
+            color: green;
+            font-size: 18px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign-up</h2>
+        <label for="email">User Email:</label>
+        <input type="text" id="email" placeholder="Enter your email">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+
+        <div id="message"></div>
+        <div id="success-message"></div>
+
+        <div class="button-container">
+            <button onclick="validateForm()">Sign Up</button>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const passwordPattern = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,}$/;
+
+            const isValidEmail = emailPattern.test(email);
+            const isValidPassword = passwordPattern.test(password);
+
+            const message = document.getElementById('message');
+            const successMessage = document.getElementById('success-message');
+
+            if (!isValidEmail) {
+                message.style.display = 'block';
+                message.textContent = 'Invalid email format';
+            } else if (!isValidPassword) {
+                message.style.display = 'block';
+                message.textContent = 'Invalid password format';
+            } else {
+                message.style.display = 'none';
+                successMessage.style.display = 'block';
+                successMessage.textContent = 'Sign-up Successful';
+            }
+        }
+    </script>
+</body>
+</html>
